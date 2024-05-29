@@ -26,6 +26,7 @@
             /* Firefox */
         }
     </style>
+
     <aside class="z-20 w-64 overflow-y-hidden bg-gray-200  dark:bg-gray-800 flex-shrink-0 asideShowHide"
         id="asideShowHide">
         <div class=" text-gray-500 dark:text-gray-400 ">
@@ -42,7 +43,7 @@
                 {{-- Dashboard --}}
                 <li class="" id="dashboardActive">
                     <a href="{{ route('dashboard.index') }}"
-                        class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-white">
+                        class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-white dark:hover:bg-gray-950 dark:rounded-none">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                             aria-hidden="true" id="dashboardIcon">
                             <path clip-rule="evenodd" fill-rule="evenodd"
@@ -59,7 +60,7 @@
                 {{-- User --}}
                 <li class="" id="userActive">
                     <a href="{{ route('users.index') }}"
-                        class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-white">
+                        class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-white dark:hover:bg-gray-950 dark:rounded-none">
 
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" id="userIcon">
@@ -72,7 +73,6 @@
                 {{-- User --}}
                 <br>
             </ul>
-
         </div>
         <input type="hidden" value="{{ $name }}" id="sideActive">
     </aside>

@@ -11,6 +11,9 @@ use Exception;
 
 class UserService extends BaseController
 {
+    const VIEW = 'admin.user';
+    const ROUTE = 'users';
+    const SUCCESS = 'User was successfully';
     public function __construct(
         private UserRepository $userRepository,
     )
@@ -24,27 +27,27 @@ class UserService extends BaseController
         $params = $request->only('keyword');
         $userList = $this->userRepository->getUserList($params);
         $userList = UserResource::collection($userList)->response()->getData(true);
-        return $this->returnView('admin.user.index', $userList, $params);
+        return $this->returnView(self::VIEW . '.index', $userList, $params);
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
     public function create()
     {
-        return view('admin.user.create');
+        return view(self::VIEW . '.create');
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function store($request)
+    public function store(array $request)
     {
         try {
             $this->userRepository->beginTransaction();
             $this->userRepository->insert($request);
             $this->userRepository->commit();
-            //return $this->redirectRoute(self::ROUTE.".index", "Name was successfully created.");
+            return $this->redirectRoute(self::ROUTE.".index", self::SUCCESS." created.");
         } catch (Exception $e) {
-            //return $this->redirectBackWithError($this->userRepository, $e);
+            return $this->redirectBackWithError($this->userRepository, $e);
         }
     }
 

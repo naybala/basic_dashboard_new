@@ -37,7 +37,7 @@ class BaseController extends Controller
     {
         $repo->rollBack();
         return redirect()->back()->with([
-            'errorHr' => $e->getMessage(),
+            'base_error' => $e->getMessage(),
         ]);
     }
 
@@ -47,7 +47,7 @@ class BaseController extends Controller
     {
         $repo->rollBack();
         return redirect()->back()->with([
-            'errorHr' => $e->messages(),
+            'base_error' => $e->messages(),
         ]);
     }
 
