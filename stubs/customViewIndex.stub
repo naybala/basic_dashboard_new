@@ -1,0 +1,79 @@
+<x-master-layout name="$CAPITAL_CASE$" headerName="$CAPITAL_CASE$s List">
+    <main class="h-full overflow-y-auto">
+        <div class="hidden" id="loadingFalse">
+            <div class="container px-1 md:px-6 mx-auto grid">
+                <x-common.errorReval />
+                <x-common.exceptionError />
+                <x-common.createSuccess />
+                <x-common.deleteSuccess />
+                <div class="container flex flex-wrap justify-between mx-auto mt-5">
+                    <x-search :keyword="$keyword" />
+                    <x-common.reusableCreateBtn createUrl="$LOWER_CASE$s.create" />
+                </div>
+
+                <br>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mr-4 bg-green-400">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-center">
+                                    $CAPITAL_CASE$s Name
+                                </th>
+                                <th scope="col" class="px-6 py-3 mr-10 text-center">
+                                    Description
+                                </th>
+                                <th scope="col" class="px-6 py-3 mr-10 text-center">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $count = count($data['data']);
+                            @endphp
+                            @if ($count != 0)
+                                @foreach ($data['data'] as $$LOWER_CASE$)
+                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 text-center ">
+                                        <td scope="row" class="px-6 py-4">
+                                            {{ Str::limit($$LOWER_CASE$['name'], 20) }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ Str::limit($$LOWER_CASE$['description'], 30) }}
+                                        </td>
+                                        <form action=" {{ route('$LOWER_CASE$s.destroy', $$LOWER_CASE$['id']) }}" method="post"
+                                            class="formActionDelete">
+                                            @csrf
+                                            @method('DELETE')
+                                            <td class="px-6 py-4 items-center">
+                                                <input type="hidden" name="id" value="{{ $$LOWER_CASE$['id'] }}">
+                                                <a href="{{ route('$LOWER_CASE$s.edit', $$LOWER_CASE$['id']) }}">
+                                                    <button type="button"
+                                                        class="{{ config('config.sampleForm.buttonEdit') }}">
+                                                        Edit
+                                                    </button>
+                                                    <button type="submit"
+                                                        class="{{ config('config.sampleForm.buttonDelete') }} mt-1">
+                                                        Delete
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </form>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <x-thereIsNoData :col="100"></x-thereIsNoData>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                @if ($count > 1)
+                    <x-pagination :links="$data['meta']['links']" :keyword="$keyword"></x-pagination>
+                @endif
+            </div>
+        </div>
+        <x-loading></x-loading>
+    </main>
+    @vite('resources/js/common/validateDisapper.js')
+    @vite('resources/js/common/filter.js')
+    @vite('resources/js/common/deleteConfirm.js')
+</x-master-layout>

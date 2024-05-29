@@ -1,0 +1,73 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use $PROJECT_NAME$\Foundations\Domain\$FOLDER_NAME$\Repositories\Eloquent\$CAPITAL$Repository;
+use Garment\$PATH_NAME$\Common\BaseController;
+use $PROJECT_NAME$\$PATH_NAME$\$FOLDER_NAME$\Resources\$CAPITAL$Resource;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use Exception;
+
+class $CLASS_NAME$ extends BaseController
+{
+    public function __construct(
+        private $CAPITAL$Repository $$CAMEL_CASE$Repository,
+    )
+    {
+    }
+
+    ///////////////////////////This is Method Divider///////////////////////////////////////
+
+    public function index($request)
+    {
+        $params = $request->only('keyword');
+        $$CAMEL_CASE$List = $this->$CAMEL_CASE$Repository->get$CAPITAL$List($params);
+        $$CAMEL_CASE$List = $CAPITAL$Resource::collection($$CAMEL_CASE$List)->response()->getData(true);
+        return $this->returnView('hr.$CAMEL_CASE$.index', $$CAMEL_CASE$List, $params);
+    }
+
+    ///////////////////////////This is Method Divider///////////////////////////////////////
+
+    public function create()
+    {
+        return view('hr.$CAMEL_CASE$.create');
+    }
+
+    ///////////////////////////This is Method Divider///////////////////////////////////////
+
+    public function store($request)
+    {
+        try {
+            $this->$CAMEL_CASE$Repository->beginTransaction();
+            $this->$CAMEL_CASE$Repository->insert($request);
+            $this->$CAMEL_CASE$Repository->commit();
+            //return $this->redirectRoute(self::ROUTE.".index", "Name was successfully created.");
+        } catch (Exception $e) {
+            //return $this->redirectBackWithError($this->$CAMEL_CASE$Repository, $e);
+        }
+    }
+
+    ///////////////////////////This is Method Divider///////////////////////////////////////
+
+    public function edit(string $id)
+    {
+
+    }
+
+    ///////////////////////////This is Method Divider///////////////////////////////////////
+
+    public function update($request, string $id)
+    {
+
+    }
+
+    ///////////////////////////This is Method Divider///////////////////////////////////////
+
+    public function destroy($request)
+    {
+
+    }
+
+    ///////////////////////////This is Method Divider///////////////////////////////////////
+}

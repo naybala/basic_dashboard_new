@@ -1,0 +1,55 @@
+<x-master-layout name="$CAPITAL_CASE$" headerName="Edit $CAPITAL_CASE$">
+    @vite('resources/css/fstdropdown.css')
+    <main class="h-full overflow-y-auto" id="main">
+        <br>
+        <div class="hidden" id="loadingFalse">
+            <div class="container px-6 mx-auto grid">
+                <x-common.exceptionError />
+                <x-common.errorReval />
+                <p class="text-4xl font-light text-gray-900 dark:text-white text-center">$CAPITAL_CASE$ Information</p>
+                {{-- Validation Message --}}
+                <div class="" role="alert" id="validateCreate$CAPITAL_CASE$">
+                    <ul>
+                    </ul>
+                </div>
+                {{-- Validation Message --}}
+                <div
+                    class="grid gap-2 mb-8 mt-2 md:grid-cols-1 xl:grid-cols-1 bg-white
+                    rounded-lg shadow-md py-2 mx-0 md:mx-5 px-1 md:px-16 lg:px-40 md:py-10">
+                    <div class="px-4 py-3 mb-8 dark:bg-gray-800 bg-dark-900">
+                        <form action="{{ route('$LOWER_CASE$s.update', $data->id) }}" method="post" id="create$CAPITAL_CASE$Form">
+                            @csrf
+                            @method('PATCH')
+                            {{-- hidden id --}}
+                            <input type="hidden" value="{{ $data->id }}" name="id">
+                            {{-- hidden id --}}
+
+                            {{-- Name --}}
+                            <div class="mb-4 py-2">
+                                <label for="name" class="{{ config('config.sampleForm.label') }}">Leave Type
+                                    Name</label>
+                                <input type="text" id="name" value="{{ $data->name }}" name="name"
+                                    class="{{ config('config.sampleForm.input') }}" placeholder="Name">
+                            </div>
+                            {{-- Name --}}
+                            {{-- Description --}}
+                            <div class="mb-4 py-2">
+                                <label for="description"
+                                    class="{{ config('config.sampleForm.label') }}">Description</label>
+                                <input type="text" id="description" value="{{ $data->description }}"
+                                    name="description" class="{{ config('config.sampleForm.input') }}"
+                                    placeholder="Description">
+                            </div>
+                            {{-- Description --}}
+                            <br>
+                            <x-common.reusableButton operate="Update" url="$LOWER_CASE$s.index" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <x-loading></x-loading>
+    </main>
+    @vite('resources/js/GarmentHrSystem/$CAPITAL_CASE$/validate.js')
+    @vite('resources/js/common/validateDisapper.js')
+</x-master-layout>
