@@ -1,7 +1,7 @@
-const togglePassword = document.querySelector("#togglePassword");
-const password = document.querySelector("#password");
-const removeEyes = document.querySelector("#removeEyes");
-const showEyes = document.querySelector("#showEyes");
+const togglePassword = document.querySelector("#togglePasswordTwo");
+const password = document.querySelector("#new-password");
+const removeEyes = document.querySelector("#removeEyesTwo");
+const showEyes = document.querySelector("#showEyesTwo");
 
 togglePassword.addEventListener("click", function (e) {
   const type =

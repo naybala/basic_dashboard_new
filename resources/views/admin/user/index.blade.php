@@ -2,11 +2,11 @@
     <main class="h-full overflow-y-auto">
         <div class="hidden" id="loadingFalse">
             <div class="container px-1 md:px-6 mx-auto grid">
+                <x-common.errorReval />
+                <x-common.exceptionError />
+                <x-common.createSuccess />
+                <x-common.deleteSuccess />
                 <div class="container flex flex-wrap justify-between mx-auto mt-5">
-                    <x-common.errorReval />
-                    <x-common.exceptionError />
-                    <x-common.createSuccess />
-                    <x-common.deleteSuccess />
                     {{-- Search --}}
                     <x-common.search :keyword="$keyword" />
                     {{-- Search --}}

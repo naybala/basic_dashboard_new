@@ -7,4 +7,6 @@ return [
     'password'=>'User Password',
     'wrong_credential'=>"user's credentials was something wrong!",
     'login_btn'=>"Login",
+    'save'=>"Save",
+    'cancel'=>"Cancel",
 ];

@@ -6,7 +6,7 @@
         </button>
         <a href="{{ route($attributes['url']) }}" class="{{ config('config.sampleForm.newButtonForm') }}">
             <button type="button" class="">
-                Cancel
+                {{ $attributes['cancel'] }}
             </button>
         </a>
     </div>

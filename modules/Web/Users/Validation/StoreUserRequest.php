@@ -3,6 +3,7 @@
 namespace BasicDashboard\Web\Users\Validation;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class StoreUserRequest extends FormRequest
 {
@@ -11,6 +12,12 @@ class StoreUserRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        $this->offsetUnset('_token');
+    }
+
+    
     public function rules(): array
     {
         return [
@@ -21,6 +28,12 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
+    protected function passedValidation(): void
+    {
+        $this->merge([
+            'password' => Hash::make($this->password),
+        ]);
+    }
 
     public function messages(): array
     {

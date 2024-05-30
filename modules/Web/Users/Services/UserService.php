@@ -8,12 +8,13 @@ use BasicDashboard\Web\Users\Resources\UserResource;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Exception;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 
 class UserService extends BaseController
 {
     const VIEW = 'admin.user';
     const ROUTE = 'users';
-    const SUCCESS = 'User was successfully';
     public function __construct(
         private UserRepository $userRepository,
     )
@@ -45,7 +46,7 @@ class UserService extends BaseController
             $this->userRepository->beginTransaction();
             $this->userRepository->insert($request);
             $this->userRepository->commit();
-            return $this->redirectRoute(self::ROUTE.".index", self::SUCCESS." created.");
+            return $this->redirectRoute(self::ROUTE.".index", __('user.user_created'));
         } catch (Exception $e) {
             return $this->redirectBackWithError($this->userRepository, $e);
         }
@@ -55,14 +56,32 @@ class UserService extends BaseController
 
     public function edit(string $id)
     {
-
+       $user = $this->userRepository->edit($id);
+       return $this->returnView(self::VIEW.".edit",$user);
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function update($request, string $id)
+    public function update(array $request)
     {
-
+        try {
+            $this->userRepository->beginTransaction();
+            $match = $this->isPasswordMatch($request['id'],$request['password']);
+            if($match){
+                $request['password']= Hash::make($request['newPassword']);
+                $request = Arr::except($request,['newPassword']);
+            }else{
+                return redirect()->back()->with([
+                    'base_error' => __('user.old_password_wrong'),
+                ]);
+            }
+            $this->userRepository->update($request,$request['id']);            
+            $this->userRepository->commit();
+            return $this->redirectRoute(self::ROUTE.".index", __('user.user_updated'));
+        } catch (Exception $e) {
+            return $this->redirectBackWithError($this->userRepository, $e);
+        }
+       
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
@@ -73,4 +92,9 @@ class UserService extends BaseController
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
+    private function isPasswordMatch(int $id,string $oldPassword):bool
+    {
+        $password = $this->userRepository->connection(true)->where('id',$id)->value('password');
+        return Hash::check($oldPassword, $password);      
+    }
 }

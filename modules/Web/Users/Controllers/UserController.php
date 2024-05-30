@@ -37,7 +37,7 @@ class UserController extends BaseController
 
     public function store(StoreUserRequest $request)
     {
-        return $this->userService->store($request->validated());
+        return $this->userService->store($request->all());
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
@@ -49,9 +49,9 @@ class UserController extends BaseController
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function update(UpdateUserRequest $request, string $id)
+    public function update(UpdateUserRequest $request)
     {
-        return $this->userService->update($request->validated(), $id);
+        return $this->userService->update($request->validated());
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////

@@ -56,7 +56,7 @@
                                 {{-- password and status --}}
                             </div>
                             <br />
-                            <x-common.saveUpdateCancel operate="Save" url="users.index" />
+                            <x-common.saveUpdateCancel :operate="__('messages.save')" :cancel="__('messages.cancel')" url="users.index" />
                         </form>
                     </div>
                 </div>
