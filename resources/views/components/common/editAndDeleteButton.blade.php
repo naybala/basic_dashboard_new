@@ -2,6 +2,7 @@
     @csrf
     @method('DELETE')
     <td class="px-6 py-4 text-center">
+        <input type="hidden" value="{{ $attributes['deleteId'] }}" name="id">
         <a href="{{ route($attributes['editRoute'], $attributes['deleteId']) }}">
             <button type="button" class="{{ config('config.sampleForm.buttonEdit') }} lg:px-0 lg:pl-4 lg:pr-4">
                 Edit

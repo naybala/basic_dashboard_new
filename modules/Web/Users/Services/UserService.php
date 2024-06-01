@@ -23,7 +23,7 @@ class UserService extends BaseController
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function index($request)
+    public function index($request): View
     {
         $params = $request->only('keyword');
         $userList = $this->userRepository->getUserList($params);
@@ -33,14 +33,14 @@ class UserService extends BaseController
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function create()
+    public function create():View
     {
         return view(self::VIEW . '.create');
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function store(array $request)
+    public function store(array $request): RedirectResponse
     {
         try {
             $this->userRepository->beginTransaction();
@@ -54,7 +54,7 @@ class UserService extends BaseController
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function edit(string $id)
+    public function edit(string $id): View | RedirectResponse
     {
        $user = $this->userRepository->edit($id);
        return $this->returnView(self::VIEW.".edit",$user);
@@ -62,7 +62,7 @@ class UserService extends BaseController
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function update(array $request)
+    public function update(array $request): RedirectResponse
     {
         try {
             $this->userRepository->beginTransaction();
@@ -86,9 +86,16 @@ class UserService extends BaseController
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
-    public function destroy($request)
+    public function destroy($request): RedirectResponse
     {
-
+        try{
+            $this->userRepository->beginTransaction();
+            $this->userRepository->delete($request['id']);
+            $this->userRepository->commit();
+            return $this->redirectRoute(self::ROUTE . ".index", __('user.user_deleted'));
+        }catch(Exception $e){
+            return $this->redirectBackWithError($this->userRepository, $e);
+        }
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
