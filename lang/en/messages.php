@@ -8,5 +8,9 @@ return [
     'wrong_credential'=>"user's credentials was something wrong!",
     'login_btn'=>"Login",
     'save'=>"Save",
+    'update'=>"Update",  
+    'create'=>"Create",  
     'cancel'=>"Cancel",
+    'search_item'=>"Search for items",
+    'search'=>"Search",
 ];

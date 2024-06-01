@@ -36,7 +36,8 @@
                                         <div class="relative">
                                             <x-common.inputLg type="password" id="password" name="password"
                                                 :placeHolder="__('user.placeholder_password')" />
-                                            <x-common.loginEyes />
+                                            <x-common.loginEyes togglePassword="togglePassword" showEyes="showEyes"
+                                                removeEyes="removeEyes" />
                                         </div>
                                     </div>
                                     {{-- password --}}

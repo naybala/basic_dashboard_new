@@ -57,4 +57,5 @@
         <x-common.loading></x-common.loading>
     </main>
     {{-- @vite('resources/js/common/deleteConfirm.js') --}}
+
 </x-master-layout>

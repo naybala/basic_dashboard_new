@@ -20,7 +20,7 @@
                 <input type="text" id="table-search" name="keyword"
                     value="{{ isset($keyword['keyword']) ? $keyword['keyword'] : '' }}"
                     class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search for items">
+                    placeholder="{{ __('messages.search_item') }}">
 
                 <a href="" class="cursor-pointer" id="clearSearch">
                     <div class="absolute inset-y-0 right-5 flex items-center pl-3">
@@ -40,7 +40,7 @@
             <a href="" class="cursor-pointer" id="btnSearch">
                 <div
                     class="block p-2 text-center text-sm border border-gray-300 rounded-lg w-20 hover:bg-gray-800 hover:text-white text-white focus:ring-blue-500 focus:border-blue-500 bg-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    Search</div>
+                    {{ __('messages.search') }}</div>
             </a>
         </div>
     </div>

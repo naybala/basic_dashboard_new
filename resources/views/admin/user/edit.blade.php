@@ -68,7 +68,7 @@
 
 
                             <br />
-                            <x-common.saveUpdateCancel :operate="__('messages.save')" :cancel="__('messages.cancel')" url="users.index" />
+                            <x-common.saveUpdateCancel :operate="__('messages.update')" :cancel="__('messages.cancel')" url="users.index" />
                         </form>
                     </div>
                 </div>

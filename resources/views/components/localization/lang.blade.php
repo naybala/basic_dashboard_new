@@ -5,7 +5,9 @@
 </select>
 <script>
     var url = "{{ route('changeLang') }}";
-    $(".changeLang").change(function() {
-        window.location.href = url + "?lang=" + $(this).val();
+    var changeLang = document.querySelector('.changeLang');
+
+    changeLang.addEventListener("change", function() {
+        window.location.href = url + "?lang=" + this.value;
     });
 </script>
