@@ -13,4 +13,8 @@ return [
     'cancel'=>"Cancel",
     'search_item'=>"Search for items",
     'search'=>"Search",
+    'edit'=>"Edit",
+    'delete'=>"Delete",
+    'next'=>"Next",
+    'previous'=>"Previous"
 ];
