@@ -5,11 +5,11 @@
         <input type="hidden" value="{{ $attributes['deleteId'] }}" name="id">
         <a href="{{ route($attributes['editRoute'], $attributes['deleteId']) }}">
             <button type="button" class="{{ config('config.sampleForm.buttonEdit') }} lg:px-0 lg:pl-4 lg:pr-4">
-                Edit
+                {{ __('messages.edit') }}
             </button>
         </a>
         <button type="submit" class="{{ config('config.sampleForm.buttonDelete') }} lg:px-0 lg:pl-4 lg:pr-4 mt-1">
-            Delete
+            {{ __('messages.delete') }}
         </button>
     </td>
 </form>

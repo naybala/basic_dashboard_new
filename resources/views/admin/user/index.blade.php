@@ -43,7 +43,7 @@
                                         {{ Str::limit($user['email'], 20) }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <x-common.Status :status="$user['status']" />
+                                        <x-common.status :status="$user['status']" />
                                     </td>
                                     <x-common.editAndDeleteButton deleteRoute="users.destroy" :deleteId="$user['id']"
                                         editRoute="users.edit" />

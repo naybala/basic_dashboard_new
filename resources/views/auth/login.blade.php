@@ -50,7 +50,7 @@
                             </svg>
                         </div>
                     </div>
-                    <x-common.Button type="submit" :title="__('messages.login_btn')" />
+                    <x-common.button type="submit" :title="__('messages.login_btn')" />
                 </div>
             </form>
         </div>
