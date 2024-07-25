@@ -1,21 +1,21 @@
 <?php
 
-namespace $NAMESPACE$;
+namespace BasicDashboard\Foundations\Domain\Roles\Repositories\Eloquent;
 
-use $INTERFACE_PATH$\Foundations\Domain\Base\Repositories\Eloquent\BaseRepository;
-use $INTERFACE_PATH$\$CLASS_NAME$RepositoryInterface;
-use $MODEL_PATH$\$CLASS_NAME$;
+use BasicDashboard\Foundations\Domain\Base\Repositories\Eloquent\BaseRepository;
+use BasicDashboard\Foundations\Domain\Roles\Repositories\RoleRepositoryInterface;
+use BasicDashboard\Foundations\Domain\Roles\Role;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class $CLASS_NAME$Repository extends BaseRepository implements $CLASS_NAME$RepositoryInterface
+class RoleRepository extends BaseRepository implements RoleRepositoryInterface
 {
-    public function __construct($CLASS_NAME$ $model)
+    public function __construct(Role $model)
     {
         parent::__construct($model);
     }
 
-    protected function filter$CLASS_NAME$(array $params): Builder | $CLASS_NAME$
+    protected function filterRole(array $params): Builder | Role
     {
         $connection = $this->connection();
         if (isset($params['keyword']) && strlen($params['keyword']) > 0) {
@@ -24,9 +24,9 @@ class $CLASS_NAME$Repository extends BaseRepository implements $CLASS_NAME$Repos
         return $connection;
     }
 
-    public function get$CLASS_NAME$List($params): LengthAwarePaginator
+    public function getRoleList($params): LengthAwarePaginator
     {
-        return $this->filter$CLASS_NAME$($params)
+        return $this->filterRole($params)
             ->orderByRaw('CASE WHEN created_at IS NULL THEN updated_at ELSE created_at END DESC')
             ->orderBy('id', 'desc')
             ->paginate(20);

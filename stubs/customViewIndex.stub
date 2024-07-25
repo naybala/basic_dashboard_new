@@ -73,7 +73,7 @@
         </div>
         <x-loading></x-loading>
     </main>
-    @vite('resources/js/common/validateDisapper.js')
+    @vite('resources/js/common/validateDisappear.js')
     @vite('resources/js/common/filter.js')
     @vite('resources/js/common/deleteConfirm.js')
 </x-master-layout>

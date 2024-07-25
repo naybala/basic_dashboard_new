@@ -2,7 +2,7 @@
 
 namespace $NAMESPACE$;
 
-use Garment\$PATH_NAME$\Common\BaseController;
+use $PROJECT_NAME$\$PATH_NAME$\Common\BaseController;
 use $PROJECT_NAME$\$PATH_NAME$\$FOLDER_NAME$\Services\$CAPITAL$Service;
 use $PROJECT_NAME$\$PATH_NAME$\$FOLDER_NAME$\Validation\Store$CAPITAL$Request;
 use $PROJECT_NAME$\$PATH_NAME$\$FOLDER_NAME$\Validation\Update$CAPITAL$Request;

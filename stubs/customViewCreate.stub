@@ -45,5 +45,5 @@
         <x-loading></x-loading>
     </main>
     @vite('resources/js/GarmentHrSystem/$CAPITAL_CASE$/validate.js')
-    @vite('resources/js/common/validateDisapper.js')
+    @vite('resources/js/common/validateDisappear.js')
 </x-master-layout>

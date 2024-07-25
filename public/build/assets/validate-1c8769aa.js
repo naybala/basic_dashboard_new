@@ -1,0 +1,1 @@
+import{e as r}from"./errorValidation-e13d2ef3.js";let l=[{selector:"#name",checkValue:"",errorMsg:"Please fill user name!"},{selector:"#email",checkValue:"",errorMsg:"Please fill user email!"},{selector:"#password",checkValue:"",errorMsg:"Please fill user password!"}];$("#btn-submit").on("click",function(e){r(l,"#createUserForm","#validateCreateUser",e)});

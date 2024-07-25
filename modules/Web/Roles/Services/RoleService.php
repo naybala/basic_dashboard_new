@@ -1,18 +1,18 @@
 <?php
 
-namespace $NAMESPACE$;
+namespace BasicDashboard\Web\Roles\Services;
 
-use $PROJECT_NAME$\Foundations\Domain\$FOLDER_NAME$\Repositories\Eloquent\$CAPITAL$Repository;
-use $PROJECT_NAME$\$PATH_NAME$\Common\BaseController;
-use $PROJECT_NAME$\$PATH_NAME$\$FOLDER_NAME$\Resources\$CAPITAL$Resource;
+use BasicDashboard\Foundations\Domain\Roles\Repositories\Eloquent\RoleRepository;
+use BasicDashboard\Web\Common\BaseController;
+use BasicDashboard\Web\Roles\Resources\RoleResource;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Exception;
 
-class $CLASS_NAME$ extends BaseController
+class RoleService extends BaseController
 {
     public function __construct(
-        private $CAPITAL$Repository $$CAMEL_CASE$Repository,
+        private RoleRepository $roleRepository,
     )
     {
     }
@@ -22,16 +22,16 @@ class $CLASS_NAME$ extends BaseController
     public function index($request)
     {
         $params = $request->only('keyword');
-        $$CAMEL_CASE$List = $this->$CAMEL_CASE$Repository->get$CAPITAL$List($params);
-        $$CAMEL_CASE$List = $CAPITAL$Resource::collection($$CAMEL_CASE$List)->response()->getData(true);
-        return $this->returnView('hr.$CAMEL_CASE$.index', $$CAMEL_CASE$List, $params);
+        $roleList = $this->roleRepository->getRoleList($params);
+        $roleList = RoleResource::collection($roleList)->response()->getData(true);
+        return $this->returnView('hr.role.index', $roleList, $params);
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
     public function create()
     {
-        return view('hr.$CAMEL_CASE$.create');
+        return view('hr.role.create');
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
@@ -39,12 +39,12 @@ class $CLASS_NAME$ extends BaseController
     public function store($request)
     {
         try {
-            $this->$CAMEL_CASE$Repository->beginTransaction();
-            $this->$CAMEL_CASE$Repository->insert($request);
-            $this->$CAMEL_CASE$Repository->commit();
+            $this->roleRepository->beginTransaction();
+            $this->roleRepository->insert($request);
+            $this->roleRepository->commit();
             //return $this->redirectRoute(self::ROUTE.".index", "Name was successfully created.");
         } catch (Exception $e) {
-            //return $this->redirectBackWithError($this->$CAMEL_CASE$Repository, $e);
+            //return $this->redirectBackWithError($this->roleRepository, $e);
         }
     }
 
