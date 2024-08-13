@@ -19,7 +19,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         $connection = $this->connection();
         if (isset($params['keyword']) && strlen($params['keyword']) > 0) {
-            $connection = $connection->where('name', 'LIKE', '%' . $params['keyword'] . '%');
+            $connection = $connection->where('name', 'LIKE', '%' . $params['keyword'] . '%')
+                ->orWhere('email', 'LIKE', '%' . $params['keyword'] . '%');
         }
         return $connection;
     }

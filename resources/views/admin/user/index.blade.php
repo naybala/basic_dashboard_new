@@ -18,16 +18,16 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
-                                    Name
+                                    {{ __('user.table_column_name') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Email
+                                    {{ __('user.table_column_email') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center">
-                                    Status
+                                    {{ __('user.table_column_status') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 mr-10 text-center">
-                                    Actions
+                                    {{ __('user.table_column_action') }}
                                 </th>
                             </tr>
                         </thead>
@@ -40,7 +40,7 @@
                                         {{ Str::limit($user['name'], 20) }}
                                     </td>
                                     <td scope="row" class="px-6 py-4">
-                                        {{ Str::limit($user['email'], 20) }}
+                                        {{ Str::limit($user['email'], 40) }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <x-common.status :status="$user['status']" />
